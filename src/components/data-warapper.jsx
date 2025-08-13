@@ -1,7 +1,8 @@
 import { TipsButtons } from "./tips-buttons"
 
 
-function DataWarapper({ bill, setBill, people, setPeople, tip, setTip }) {
+function DataWarapper({ data, setData }) {
+    const { bill, people } = data;
     return (
         <div className="data-wrapper">
             <h1>Bill</h1>
@@ -12,14 +13,14 @@ function DataWarapper({ bill, setBill, people, setPeople, tip, setTip }) {
                     type="number"
                     value={bill}
                     min="0"
-                    onChange={(e) => setBill(e.target.value)}
+                    onChange={(e) => setData({ ...data, bill: parseFloat(e.target.value) })}
                 />
 
             </label>
             <h2>Select Tip %</h2>
-            <TipsButtons 
-                tip={tip}
-                setTip={setTip}
+            <TipsButtons
+                data={data}
+                setData={setData}
             />
             <h2>Number of People</h2>
             <label htmlFor="input-people">
@@ -29,7 +30,8 @@ function DataWarapper({ bill, setBill, people, setPeople, tip, setTip }) {
                     type="number"
                     value={people}
                     min="1"
-                    onChange={(e) => setPeople(e.target.value)}
+                    onChange={(e) => setData({ ...data, people: parseInt(e.target.value) })}
+
                 />
             </label>
         </div>
